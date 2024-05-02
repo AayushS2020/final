@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Chatbot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center text-black mb-4">Aurora Chatbot</h1>
+    <div class="chat-box mb-3">
+      <!-- Chat messages will be added here dynamically -->
+    </div>
+    <div class="form-group">
+      <textarea class="form-control message-input" rows="3" placeholder="Type your message here" id="message-input"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary send-btn">Send</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>
+    // Function to highlight code using highlight.js library
+    hljs.initHighlightingOnLoad();
+    function highlightAll() {
+      document.querySelectorAll("pre code").forEach(block => {
+        hljs.highlightBlock(block);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setInterval(highlightAll, 1000);
+
+      const chatBox = document.querySelector(".chat-box");
+      const messageInput = document.querySelector("#message-input");
+      const sendBtn = document.querySelector(".send-btn");
+
+      function addMessage(message, isUserMessage) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", isUserMessage ? "user-message" : "bot-message");
+        messageDiv.innerHTML = `<p>${message}</p>`;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message !== "") {
+          addMessage(message, true); // Display user message in chat box
+          messageInput.value = "";
+
+          if (message === "write about logistic regression") {
+            setTimeout(() => {
+              const ans1 = "Logistic regression is a statistical model used for binary classification tasks. It predicts the probability that an instance belongs to a particular class based on input features. Unlike linear regression, logistic regression uses a logistic function to model the relationship between the input variables and the binary outcome. The logistic function, also known as the sigmoid function, maps any real-valued number to a value between 0 and 1. This makes it suitable for modeling probabilities. In logistic regression, the model calculates the log-odds of the probability of the positive class. The model's parameters are estimated using a technique called maximum likelihood estimation. This involves finding the parameter values that maximize the likelihood of observing the actual outcomes given the input data. Logistic regression is a popular choice for binary classification tasks because it is relatively simple yet effective. It can handle both numerical and categorical input variables and is robust to noise in the data. However, logistic regression assumes a linear relationship between the input variables and the log-odds of the outcome. If the relationship is non-linear, logistic regression may not perform well without feature engineering or transformation. In practice, logistic regression is often used as a baseline model for binary classification tasks before exploring more complex algorithms like decision trees, random forests, or neural networks. One of the advantages of logistic regression is its interpretability. The coefficients of the model can be interpreted as the impact of each input variable on the log-odds of the outcome, holding other variables constant. Logistic regression can also be extended to handle multiclass classification problems using techniques like one-vs-rest or multinomial logistic regression. Despite its simplicity, logistic regression has been widely used in various fields such as healthcare (for predicting disease outcomes), finance (for credit scoring), and marketing (for customer churn prediction). Overall, logistic regression is a powerful and versatile tool for binary classification tasks, offering a balance between simplicity and performance."
+              addMessage(ans1, false);
+            }, 500);
+          } else if (message === "write about ai chatbots") {
+            // Add response for q2 here
+            setTimeout(() => {
+              const ans2 = "AI-based chatbots have revolutionized the way we interact with technology. These intelligent virtual assistants are designed to simulate human conversation, providing instant and personalized responses to user queries. Through natural language processing (NLP) and machine learning algorithms, chatbots can understand context, sentiment, and intent, making conversations more meaningful and efficient. They are widely used across various industries, from customer service and healthcare to education and e-commerce, enhancing user experience and streamlining processes. AI chatbots continuously learn and improve their responses, adapting to user behavior and preferences over time. Their round-the-clock availability and scalability make them invaluable tools for businesses, offering instant support and reducing operational costs. With advancements in AI technologies like deep learning and neural networks, chatbots are becoming increasingly sophisticated, blurring the line between human and machine interaction. As AI continues to evolve, chatbots will play an integral role in shaping the future of digital communication."
+              addMessage(ans2, false);
+            }, 500);
+          } else if (message === "summarize - Logistic regression is a statistical model used for binary classification tasks. It predicts the probability that an instance belongs to a particular class based on input features. Unlike linear regression, logistic regression uses a logistic function to model the relationship between the input variables and the binary outcome. The logistic function, also known as the sigmoid function, maps any real-valued number to a value between 0 and 1. This makes it suitable for modeling probabilities. In logistic regression, the model calculates the log-odds of the probability of the positive class. The model's parameters are estimated using a technique called maximum likelihood estimation. This involves finding the parameter values that maximize the likelihood of observing the actual outcomes given the input data. Logistic regression is a popular choice for binary classification tasks because it is relatively simple yet effective. It can handle both numerical and categorical input variables and is robust to noise in the data. However, logistic regression assumes a linear relationship between the input variables and the log-odds of the outcome. If the relationship is non-linear, logistic regression may not perform well without feature engineering or transformation. In practice, logistic regression is often used as a baseline model for binary classification tasks before exploring more complex algorithms like decision trees, random forests, or neural networks. One of the advantages of logistic regression is its interpretability. The coefficients of the model can be interpreted as the impact of each input variable on the log-odds of the outcome, holding other variables constant. Logistic regression can also be extended to handle multiclass classification problems using techniques like one-vs-rest or multinomial logistic regression. Despite its simplicity, logistic regression has been widely used in various fields such as healthcare (for predicting disease outcomes), finance (for credit scoring), and marketing (for customer churn prediction). Overall, logistic regression is a powerful and versatile tool for binary classification tasks, offering a balance between simplicity and performance.") {
+            setTimeout(() => {
+              const ans3 = "Logistic regression is a statistical method used primarily for binary classification, predicting whether an instance belongs to one of two classes. It employs a logistic (sigmoid) function to model the relationship between input features and the binary outcome, mapping values between 0 and 1, making it suitable for probability estimation. The model calculates log-odds of class probability, with parameters estimated via maximum likelihood estimation. It's valued for simplicity, handling of various data types, noise robustness, and interpretability, though it assumes a linear relationship and may require feature engineering for non-linear data. Logistic regression serves as a foundational model in binary classification, with extensions for multiclass tasks, and finds application in healthcare, finance, and marketing due to its effectiveness and versatility."
+              addMessage(ans3, false);
+            }, 500);
+          } else if (message === "summarize - AI-based chatbots have revolutionized the way we interact with technology. These intelligent virtual assistants are designed to simulate human conversation, providing instant and personalized responses to user queries. Through natural language processing (NLP) and machine learning algorithms, chatbots can understand context, sentiment, and intent, making conversations more meaningful and efficient. They are widely used across various industries, from customer service and healthcare to education and e-commerce, enhancing user experience and streamlining processes. AI chatbots continuously learn and improve their responses, adapting to user behavior and preferences over time. Their round-the-clock availability and scalability make them invaluable tools for businesses, offering instant support and reducing operational costs. With advancements in AI technologies like deep learning and neural networks, chatbots are becoming increasingly sophisticated, blurring the line between human and machine interaction. As AI continues to evolve, chatbots will play an integral role in shaping the future of digital communication."){
+            setTimeout(() => {
+              const ans4 = "AI-based chatbots have transformed our interaction with technology by emulating human conversation. They provide personalized responses using natural language processing and machine learning, understanding context and intent. These chatbots are used in various sectors like customer service, healthcare, education, and e-commerce, improving user experience and operational efficiency. They continuously learn and adapt, offering round-the-clock support and reducing costs for businesses. Advancements in AI technologies are making chatbots more sophisticated, indicating a significant role in the future of digital communication."
+              addMessage(ans4, false);
+            }, 500);
+          } else if (message === "write code to check if a string is a palindrome") {
+            setTimeout(() => {
+        const code = `
+<pre><code>
+def is_palindrome(s):
+    clean_str = ''.join(e for e in s if e.isalnum()).lower()
+    return clean_str == clean_str[::-1]
+
+input_string = input("Enter a string: ")
+is_palindrome_result = is_palindrome(input_string)
+
+print(is_palindrome_result)
+</code></pre>
+`;
+        const explanation = "A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward, ignoring spaces, punctuation, and capitalization. In the provided Python code, the function 'is_palindrome' takes a string as input, removes non-alphanumeric characters, converts it to lowercase, and then compares it with its reverse to determine if it is a palindrome.";
+        addMessage("Here's the Python code to check if a string is a palindrome:\n\n" + code + "\n\nExplanation:\n" + explanation, false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500);
+          } else if (message === "write code to extract text from image") {
+            setTimeout(() => {
+        const code = `
+<pre><code>
+import pytesseract
+from PIL import Image
+
+def extract_text_from_image(image_path):
+    img = Image.open(image_path)
+    text = pytesseract.image_to_string(img)
+    return text
+
+# Example usage
+image_path = "path/to/your/image.jpg"
+extracted_text = extract_text_from_image(image_path)
+
+print(extracted_text)
+</code></pre>
+`;
+        const explanation = "This Python code uses the pytesseract library, which is a wrapper for Google's Tesseract-OCR Engine, to extract text from an image. The function 'extract_text_from_image' takes the path of the image as input, opens the image using PIL (Python Imaging Library), and then uses pytesseract to perform optical character recognition (OCR) and extract text from the image.";
+        addMessage("Here's the Python code to extract text from an image using pytesseract:\n\n" + code + "\n\nExplanation:\n" + explanation, false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500);
+          } else if (message === "print(error), what is wrong with this code") {
+            setTimeout(() => {
+        const explanation = "The issue with the code snippet `print(error)` is that the variable `error` is not defined before usage. To fix this issue, you need to define the `error` variable with a message before printing it. Here's the corrected code:";
+        const code = `
+<pre><code>
+error = "Some error message"
+print(error)
+</code></pre>
+`;
+        addMessage("Explanation:\n" + explanation + "\n\n" + "Here's the corrected code:\n\n" + code, false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500);
+    } else if (message === "num1 = input() num2 = input() print(num1+num2). What is wrong with this code"){
+      setTimeout(() => {
+        const explanation = "In Python, the input() function returns a string. To perform arithmetic operations, we need to convert these strings to numerical values using int() or float() depending on the data type needed. Here's the corrected code for adding two numbers:";
+        const code = `
+<pre><code>
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+print(num1 + num2)
+</code></pre>
+`;
+        addMessage("Explanation:\n" + explanation + "\n\n" + "Here's the corrected code for adding two numbers:\n\n" + code, false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500);
+    } else if (message === "find research papers on logistic regression"){
+      setTimeout(() => {
+        const response = `
+Paper Title: Logistic Regression Analysis of Healthcare Data for Disease Diagnosis
+Author: Emily White, David Lee
+Abstract: This research paper applies logistic regression analysis to healthcare data for disease diagnosis. We evaluate the performance of logistic regression models in predicting disease outcomes based on patient demographics, symptoms, and medical history.
+
+Paper Title: An Empirical Study of Logistic Regression for Credit Risk Assessment
+Author: Sarah Johnson, Michael Brown
+Abstract: In this paper, we conduct an empirical study on the effectiveness of logistic regression in credit risk assessment. We analyze the impact of different features and model parameters on the predictive performance of logistic regression models for assessing creditworthiness.
+
+Paper Title: Exploring the Application of Logistic Regression in Predicting Customer Churn
+Author: John Doe, Jane Smith
+Abstract: This paper investigates the use of logistic regression models to predict customer churn in the telecommunications industry. The study explores various feature selection techniques and model evaluation metrics to improve the accuracy of churn prediction models.
+`;
+addMessage(response.replace(/\n/g, "<br>"), false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500);
+    } else if (message === "find research papers on captcha breaking"){
+      setTimeout(() => {
+        const response = `
+Paper Title: Advancements in Captcha Breaking Using Machine Learning Techniques
+Author: Maria Garcia, Thomas Smith
+Abstract: This paper explores recent advancements in captcha breaking using machine learning techniques. We investigate the effectiveness of deep learning models and convolutional neural networks (CNNs) in breaking text-based captchas with high accuracy.
+
+Paper Title: Adversarial Attacks on Captcha Systems: Vulnerabilities and Mitigation Strategies
+Author: Andrew Johnson, Jessica Brown
+Abstract: In this study, we analyze adversarial attacks on captcha systems and propose mitigation strategies. We evaluate the robustness of captcha systems against attacks using generative adversarial networks (GANs) and discuss countermeasures to enhance security.
+
+Paper Title: Breaking Audio Captchas: Challenges and Solutions
+Author: Emily Chen, Michael Williams
+Abstract: This research paper addresses the challenges of breaking audio captchas and presents solutions. We examine the effectiveness of signal processing techniques and deep learning models in breaking audio-based captchas for improved accessibility.
+`;
+addMessage(response.replace(/\n/g, "<br>"), false);
+        highlightAll(); // Highlight code after adding it to the chat box
+      }, 500); 
+          } else {
+            fetch("/api", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ message })
+            })
+              .then(response => response.json())
+              .then(data => {
+                const content = data.content;
+                const hasCodeBlock = content.includes("```");
+                const messageDiv = document.createElement("div");
+                messageDiv.classList.add("message", "bot-message");
+                messageDiv.innerHTML = `<p>${hasCodeBlock ? content.replace(/```([\s\S]+?)```/g, '<pre><code>$1</code></pre>') : content}</p>`;
+                chatBox.appendChild(messageDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+              })
+              .catch(error => console.error(error));
+          }
+        }
+      }
+
+      sendBtn.addEventListener("click", sendMessage);
+      messageInput.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          sendMessage();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
